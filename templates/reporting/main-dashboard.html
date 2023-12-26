@@ -1,0 +1,398 @@
+{% extends 'reporting/base-reporting.html' %}
+
+{% block content %}
+    {% include 'reporting/reporting-sidebar.html' %}
+    <div class="nk-wrap">
+        <div class="nk-content ">
+            <div class="container-fluid">
+                <div class="nk-content-inner">
+                    <div class="nk-content-body">
+                        <div class="nk-block-head nk-block-head-sm">
+                            <div class="nk-block-between">
+                                <div class="nk-block-head-content">
+                                    <h3 class="nk-block-title page-title">Dashboard</h3>
+                                </div><!-- .nk-block-head-content -->
+                                <div class="nk-block-head-content">
+                                    <div class="toggle-wrap nk-block-tools-toggle">
+                                        <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1"
+                                           data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
+                                        <div class="toggle-expand-content" data-content="pageMenu">
+                                            <ul class="nk-block-tools g-3">
+                                                <li>
+                                                    <div class="drodown">
+                                                        <a href="#"
+                                                           class="dropdown-toggle btn btn-white btn-dim btn-outline-light"
+                                                           data-bs-toggle="dropdown"><em
+                                                                class="d-none d-sm-inline icon ni ni-calender-date"></em><span><span
+                                                                class="d-none d-md-inline">Last</span> 30 Days</span><em
+                                                                class="dd-indc icon ni ni-chevron-right"></em></a>
+                                                        <div class="dropdown-menu dropdown-menu-end">
+                                                            <ul class="link-list-opt no-bdr">
+                                                                <li><a href="#"><span>Last 30 Days</span></a></li>
+                                                                <li><a href="#"><span>Last 6 Months</span></a></li>
+                                                                <li><a href="#"><span>Last 1 Years</span></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li class="nk-block-tools-opt"><a href="#" class="btn btn-primary"><em
+                                                        class="icon ni ni-reports"></em><span>Reports</span></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div><!-- .nk-block-head-content -->
+                            </div><!-- .nk-block-between -->
+                        </div><!-- .nk-block-head -->
+                        <div class="nk-block">
+                            <div class="row g-gs">
+                                <div class="col-xxl-3 col-sm-6">
+                                    <div class="card">
+                                        <div class="nk-ecwg nk-ecwg6">
+                                            <div class="card-inner">
+                                                <div class="card-title-group">
+                                                    <div class="card-title">
+                                                        <h6 class="title">Ventes journalières</h6>
+                                                    </div>
+                                                </div>
+                                                <div class="data">
+                                                    <div class="data-group">
+                                                        <div class="amount">{{ nbr_vnt_jr }}</div>
+                                                        <div class="nk-ecwg6-ck">
+                                                            <canvas class="ecommerce-line-chart-s3"
+                                                                    id="todayOrders"></canvas>
+                                                        </div>
+                                                    </div>
+                                                    <div class="info"><span class="change up text-danger"><em
+                                                            class="icon ni ni-arrow-long-up"></em>4.63%</span><span> vs. last week</span>
+                                                    </div>
+                                                </div>
+                                            </div><!-- .card-inner -->
+                                        </div><!-- .nk-ecwg -->
+                                    </div><!-- .card -->
+                                </div><!-- .col -->
+                                <div class="col-xxl-3 col-sm-6">
+                                    <div class="card">
+                                        <div class="nk-ecwg nk-ecwg6">
+                                            <div class="card-inner">
+                                                <div class="card-title-group">
+                                                    <div class="card-title">
+                                                        <h6 class="title">Chiffre d'affaires journalier</h6>
+                                                    </div>
+                                                </div>
+                                                <div class="data">
+                                                    <div class="data-group">
+                                                        <div class="amount">{{ chf_aff }}</div> Fc
+                                                        <div class="nk-ecwg6-ck">
+                                                            <canvas class="ecommerce-line-chart-s3"
+                                                                    id="todayRevenue"></canvas>
+                                                        </div>
+                                                    </div>
+                                                    <div class="info"><span class="change down text-danger"><em
+                                                            class="icon ni ni-arrow-long-down"></em>2.34%</span><span> vs. last week</span>
+                                                    </div>
+                                                </div>
+                                            </div><!-- .card-inner -->
+                                        </div><!-- .nk-ecwg -->
+                                    </div><!-- .card -->
+                                </div><!-- .col -->
+                                <div class="col-xxl-3 col-sm-6">
+                                    <div class="card">
+                                        <div class="nk-ecwg nk-ecwg6">
+                                            <div class="card-inner">
+                                                <div class="card-title-group">
+                                                    <div class="card-title">
+                                                        <h6 class="title">Productions journalières</h6>
+                                                    </div>
+                                                </div>
+                                                <div class="data">
+                                                    <div class="data-group">
+                                                        <div class="amount">{{ nbr_prod_jr }}</div>
+                                                        <div class="nk-ecwg6-ck">
+                                                            <canvas class="ecommerce-line-chart-s3"
+                                                                    id="todayCustomers"></canvas>
+                                                        </div>
+                                                    </div>
+                                                    <div class="info"><span class="change up text-danger"><em
+                                                            class="icon ni ni-arrow-long-up"></em>4.63%</span><span> vs. last week</span>
+                                                    </div>
+                                                </div>
+                                            </div><!-- .card-inner -->
+                                        </div><!-- .nk-ecwg -->
+                                    </div><!-- .card -->
+                                </div><!-- .col -->
+                                <div class="col-xxl-3 col-sm-6">
+                                    <div class="card">
+                                        <div class="nk-ecwg nk-ecwg6">
+                                            <div class="card-inner">
+                                                <div class="card-title-group">
+                                                    <div class="card-title">
+                                                        <h6 class="title">Commandes effectuées</h6>
+                                                    </div>
+                                                </div>
+                                                <div class="data">
+                                                    <div class="data-group">
+                                                        <div class="amount">{{ nbr_cmd_jr }}</div>
+                                                        <div class="nk-ecwg6-ck">
+                                                            <canvas class="ecommerce-line-chart-s3"
+                                                                    id="todayVisitors"></canvas>
+                                                        </div>
+                                                    </div>
+                                                    <div class="info"><span class="change down text-danger"><em
+                                                            class="icon ni ni-arrow-long-down"></em>2.34%</span><span> vs. last week</span>
+                                                    </div>
+                                                </div>
+                                            </div><!-- .card-inner -->
+                                        </div><!-- .nk-ecwg -->
+                                    </div><!-- .card -->
+                                </div><!-- .col -->
+                                <div class="col-xxl-6">
+                                    <div class="card card-full">
+                                        <div class="nk-ecwg nk-ecwg8 h-100">
+                                            <div class="card-inner">
+                                                <div class="card-title-group mb-3">
+                                                    <div class="card-title">
+                                                        <h6 class="title">Statistiques des ventes</h6>
+                                                    </div>
+                                                    <div class="card-tools">
+                                                        <div class="dropdown">
+                                                            <a href="#"
+                                                               class="dropdown-toggle link link-light link-sm dropdown-indicator"
+                                                               data-bs-toggle="dropdown">Weekly</a>
+                                                            <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
+                                                                <ul class="link-list-opt no-bdr">
+                                                                    <li><a href="#"><span>Daily</span></a></li>
+                                                                    <li><a href="#"
+                                                                           class="active"><span>Weekly</span></a></li>
+                                                                    <li><a href="#"><span>Monthly</span></a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <ul class="nk-ecwg8-legends">
+                                                    <li>
+                                                        <div class="title">
+                                                            <span class="dot dot-lg sq" data-bg="#6576ff"></span>
+                                                            <span>Total Order</span>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="title">
+                                                            <span class="dot dot-lg sq" data-bg="#eb6459"></span>
+                                                            <span>Cancelled Order</span>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                                <canvas id="sales-chart">
+                                                </canvas>
+                                            </div><!-- .card-inner -->
+                                        </div>
+                                    </div><!-- .card -->
+                                </div><!-- .col -->
+                                <div class="col-xxl-3 col-md-6">
+                                    <div class="card card-full overflow-hidden">
+                                        <div class="nk-ecwg nk-ecwg7 h-100">
+                                            <div class="card-inner flex-grow-1">
+                                                <div class="card-title-group mb-4">
+                                                    <div class="card-title">
+                                                        <h6 class="title">Ventes du jour par point de ventes</h6>
+                                                    </div>
+                                                </div>
+                                                <!-- Ici -->
+
+                                                <canvas id="sales-pv-chart">
+                                                </canvas>
+
+                                            </div><!-- .card-inner -->
+                                        </div>
+                                    </div><!-- .card -->
+                                </div><!-- .col -->
+                                <div class="col-xxl-3 col-md-6">
+                                    <div class="card h-100">
+                                        <div class="card-inner">
+                                            <div class="card-title-group mb-2">
+                                                <div class="card-title">
+                                                    <h6 class="title">Statistique generale</h6>
+                                                </div>
+                                            </div>
+                                            <ul class="nk-store-statistics">
+                                                <li class="item">
+                                                    <div class="info">
+                                                        <div class="title">Produits</div>
+                                                        <div class="count">{{ nbr_prod }}</div>
+                                                    </div>
+                                                    <em class="icon bg-pink-dim ni ni-box"></em>
+
+                                                </li>
+                                                <li class="item">
+                                                    <div class="info">
+                                                        <div class="title">Point de ventes</div>
+                                                        <div class="count">{{ nbr_pv }}</div>
+                                                    </div>
+                                                    <em class="icon bg-primary-dim ni ni-bag"></em>
+                                                </li>
+                                                <li class="item">
+                                                    <div class="info">
+                                                        <div class="title">Utilisateurs</div>
+                                                        <div class="count">{{ nbr_utl }}</div>
+                                                    </div>
+                                                    <em class="icon bg-info-dim ni ni-users"></em>
+                                                </li>
+                                            </ul>
+                                        </div><!-- .card-inner -->
+                                    </div><!-- .card -->
+                                </div><!-- .col -->
+                                <div class="col-xxl-8">
+                                    <div class="card card-full">
+                                        <div class="card-inner">
+                                            <div class="card-title-group">
+                                                <div class="card-title">
+                                                    <h6 class="title">Ventes recentes</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="nk-tb-list mt-n2">
+                                                    <div class="nk-tb-item nk-tb-head">
+                                                        <div class="nk-tb-col"><span>Ref</span></div>
+                                                        <div class="nk-tb-col tb-col-sm"><span>Point de vente</span></div>
+                                                        <div class="nk-tb-col tb-col-md"><span>Date</span></div>
+                                                        <div class="nk-tb-col"><span>Total</span></div>
+                                                    </div>
+
+                                            {% for item in recent_sales %}
+                                            <div class="nk-tb-item">
+                                                <div class="nk-tb-col">
+                                                    <span class="tb-lead"><a href="#">#{{ item.ref }}</a></span>
+                                                </div>
+
+
+                                                <div class="nk-tb-col tb-col-md">
+                                                    <span class="tb-sub">{{ item.pv.name }}</span>
+                                                </div>
+
+                                                <div class="nk-tb-col tb-col-md">
+                                                    <span class="tb-sub">{{ item.date|timesince }}</span>
+                                                </div>
+                                                <div class="nk-tb-col">
+                                                    <span class="tb-sub tb-amount">{{ item.get_total }}<span>FC</span></span>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                                </div>
+                                            </div><!-- .card -->
+                                        </div>
+
+                                <div class="col-xxl-4 col-md-8 col-lg-6">
+                                    <div class="card h-1400">
+                                        <div class="card-inner">
+                                            <div class="card-title-group mb-2">
+                                                <div class="card-title">
+                                                    <h6 class="title">Meilleures produits</h6>
+                                                </div>
+                                                <div class="card-tools">
+                                                    <div class="dropdown">
+                                                        <a href="#"
+                                                           class="dropdown-toggle link link-light link-sm dropdown-indicator"
+                                                           data-bs-toggle="dropdown">Weekly</a>
+                                                        <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
+                                                            <ul class="link-list-opt no-bdr">
+                                                                <li><a href="#"><span>Daily</span></a></li>
+                                                                <li><a href="#" class="active"><span>Weekly</span></a>
+                                                                </li>
+                                                                <li><a href="#"><span>Monthly</span></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <ul class="nk-top-products">
+                                                {% for item in top_products %}
+                                                <li class="item">
+                                                    <div class="thumb">
+                                                        <img src="{{ item.img.url }}" alt="" class="thumb round-xl rounded-circle" style="height: 50px;width: 80px;object-fit: cover">
+                                                    </div>
+                                                    <div class="info">
+                                                        <div class="title">{{ item.name }}</div>
+                                                        <div class="price">{{ item.price }} Fc</div>
+                                                    </div>
+                                                    <div class="total">
+                                                        <div class="amount">{{ item.total_sale }} Fc de chiffre d'affaires</div>
+                                                        <div class="count">{{ item.total_count }} ventes</div>
+                                                    </div>
+                                                </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div><!-- .card-inner -->
+                                    </div><!-- .card -->
+                                </div><!-- .col -->
+                                        </div>
+                                    </div><!-- .card -->
+                                </div>
+                            </div><!-- .row -->
+                        </div><!-- .nk-block -->
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+    var rand_color = function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+  const sales_mth = document.getElementById('sales-chart');
+  const sales_pv_jr = document.getElementById('sales-pv-chart');
+  new Chart(sales_mth, {
+    type: 'bar',
+    data: {
+      labels: [{% for data in vnt_mth_labels %}'{{ data }}',{% endfor %}],
+      datasets: [{
+        label: 'Chiffre d"affaires',
+          fillColor: rand_color(),
+        data: [{% for data in vnt_mth_data %}{{ data }},{% endfor %}],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+
+  new Chart(sales_pv_jr, {
+    type: 'doughnut',
+    data: {
+      labels: [{% for data in vnt_jr_labels %}'{{ data }}',{% endfor %}],
+      datasets: [{
+        label: 'Chiffre d"affaires',
+        data: [{% for data in vnt_jr_data %}{{ data }},{% endfor %}],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
+
+{% endblock %}

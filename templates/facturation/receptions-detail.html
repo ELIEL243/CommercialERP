@@ -1,0 +1,97 @@
+{% extends 'facturation/base-facturation.html' %}
+{% load static %}
+{% block content %}
+    {% include 'facturation/facturation_sidebar.html' %}
+    <div class="nk-wrap">
+        <div class="nk-content">
+            <div class="nk-content ">
+
+            <div class="invoice invoice-print">
+            <div class="invoice-action">
+                                            <a onclick="printPromot()" class="btn btn-icon btn-lg btn-white btn-dim btn-outline-primary" target="_blank"><em class="icon ni ni-printer-fill"></em></a>
+                                        </div>
+            <div class="invoice-wrap">
+                <div class="invoice-brand text-center">
+                    <img src="{% static 'images/erp.png' %}" alt="">
+                </div>
+                <div class="invoice-head">
+                    <div class="invoice-contact">
+                        <span class="overline-title">Reception</span>
+                        <div class="invoice-contact-info">
+                            <h4 class="title">Au point de vente {{ order.pv.name }}</h4>
+                            <ul class="list-plain">
+                                <li><em class="icon ni ni-map-pin-fill fs-18px"></em><span>Avenue kiwele<br></span></li>
+                                <li><em class="icon ni ni-call-fill fs-14px"></em><span>+012 8764 556</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="invoice-desc">
+                        <h3 class="title">Bon de reception au point de vente</h3>
+                        <ul class="list-plain">
+                            <li class="invoice-id"><span>Reference</span>:<span>{{ order.ref }}</span></li>
+                            <li class="invoice-date"><span>Date</span>:<span>{{ order.date }}</span></li>
+                            <li class="invoice-date"><span>Heure</span>:<span>{{ order.heure }}</span></li>
+                        </ul>
+                    </div>
+                </div><!-- .invoice-head -->
+                <div class="invoice-bills">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="w-150px">Img</th>
+                                    <th class="w-60">Nom</th>
+                                    <th>Qts</th>
+                                    <th>Unité</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for livraison in livraisons %}
+                                <tr>
+                                    <td><img src="{% if livraison.product.img %}{{ livraison.product.img.url }}{% endif %}" alt="" class="thumb round-xl rounded-circle" style="height: 70px;width: 80px;object-fit: cover"></td>
+                                    <td>{{ livraison.product.name }}</td>
+                                    <td>{{ livraison.qts }}</td>
+                                    <td>{{ livraison.product.unit }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div><!-- .invoice-bills -->
+            </div><!-- .invoice-wrap -->
+        </div>
+
+            </div>
+        </div>
+    </div>
+
+                                                       <li><a href="#" class="hidden btn btn-primary eg-swal-av2" id="success" style="display: none">Advanced 02</a></li>
+                                                        <li><a href="#" class="hidden btn btn-primary eg-swal-av22" id="error" style="display: none">Advanced 02</a></li>
+
+
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == 'success' %}
+                <script>
+            window.onload = function (){
+              document.getElementById('success').click();
+            };
+        </script>
+                {% else %}
+                <script>
+            window.onload = function (){
+              document.getElementById('error').click();
+            };
+        </script>
+            {% endif %}
+        {% endfor %}
+
+    {% endif %}
+    <script>
+        function printPromot() {
+            window.print();
+        }
+    </script>
+
+{% endblock %}

@@ -1,0 +1,130 @@
+{% extends 'comm/base-comm.html' %}
+
+{% block content %}
+    {% include 'comm/sidebar-comm.html' %}
+    <div class="nk-wrap">
+        <div class="nk-content">
+            <div class="nk-content ">
+                <div class="container-fluid">
+                    <div class="nk-content-inner">
+                        <div class="nk-content-body">
+                            <div class="nk-block-head nk-block-head-sm">
+                                <div class="nk-block-between">
+                                    <div class="nk-block-head-content">
+                                        <h3 class="nk-block-title page-title">Produits</h3>
+                                    </div><!-- .nk-block-head-content -->
+                                    <div class="nk-block-head-content">
+                                        <div class="toggle-wrap nk-block-tools-toggle">
+                                            <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1"
+                                               data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
+                                            <div class="toggle-expand-content" data-content="pageMenu">
+                                                <ul class="nk-block-tools g-3">
+                                                    <li>
+                                                        <div class="form-control-wrap">
+                                                            <div class="form-icon form-icon-right">
+                                                                <em class="icon ni ni-search"></em>
+                                                            </div>
+                                                            <input type="text" class="form-control" id="default-04"
+                                                                   placeholder="Quick search by id">
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="drodown">
+                                                            <a href="#"
+                                                               class="dropdown-toggle dropdown-indicator btn btn-outline-light btn-white"
+                                                               data-bs-toggle="dropdown">Status</a>
+                                                            <div class="dropdown-menu dropdown-menu-end">
+                                                                <ul class="link-list-opt no-bdr">
+                                                                    <li><a href="#"><span>New Items</span></a></li>
+                                                                    <li><a href="#"><span>Featured</span></a></li>
+                                                                    <li><a href="#"><span>Out of Stock</span></a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="nk-block-tools-opt">
+                                                        <a data-target="addProduct" href="#" id="prod-btn"
+                                                           class="toggle btn btn-icon btn-primary d-md-none"><em
+                                                                class="icon ni ni-plus"></em></a>
+                                                        <a data-target="addProduct" id="show-btn" href="#"
+                                                           class="toggle btn btn-primary d-none d-md-inline-flex"><em
+                                                                class="icon ni ni-plus"></em><span>Ajouter</span></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div><!-- .nk-block-head-content -->
+                                </div><!-- .nk-block-between -->
+                            </div><!-- .nk-block-head -->
+                            <div class="nk-block">
+                                <div class="card card-bordered">
+                                    <div class="card-inner-group">
+                                        <div class="card-inner p-0">
+                                            <table class="datatable-init-export nowrap table table-striped"
+                                                   data-export-title="Export">
+                                                <thead>
+                                                <tr>
+                                                    <th>Img</th>
+                                                    <th>Nom</th>
+                                                    <th>Unité</th>
+                                                    <th>Prix</th>
+                                                    <th>Action</th>
+
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for product in products %}
+                                                    <tr>
+                                                        <td><img src="
+                                                                {% if product.img %}{{ product.img.url }}{% endif %}"
+                                                                 alt="" class="thumb round-xl rounded-circle"
+                                                                 style="height: 70px;width: 80px;object-fit: cover">
+                                                        </td>
+                                                        <td>{{ product.name }}</td>
+                                                        <td>{{ product.unit }}</td>
+                                                        <td>{{ product.price }} Fc</td>
+                                                        <td class="">
+                                                            <a href="{% url 'product-detail' product.id %}" class="btn btn-md btn-primary">detail</a></td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+
+                                            </table>
+                                        <div id="det-div">
+
+    </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'prod/product-form.html' %}
+    <li><a href="#" class="hidden btn btn-primary eg-swal-av2" id="success" style="display: none">Advanced 02</a></li>
+    <li><a href="#" class="hidden btn btn-primary eg-swal-av23" id="error" style="display: none">Advanced 02</a></li>
+
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == 'success' %}
+                <script>
+                    window.onload = function () {
+                        document.getElementById('success').click();
+                    };
+                </script>
+            {% else %}
+                <script>
+                    window.onload = function () {
+                        document.getElementById('error').click();
+                    };
+                </script>
+            {% endif %}
+        {% endfor %}
+
+    {% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,87 @@
+{% load static %}
+    <div
+          class="nk-sidebar nk-sidebar-fixed is-dark"
+          data-content="sidebarMenu"
+        >
+          <div class="nk-sidebar-element nk-sidebar-head">
+            <div class="nk-menu-trigger">
+              <a
+                href="#"
+                class="nk-nav-toggle nk-quick-nav-icon d-xl-none"
+                data-target="sidebarMenu"
+                ><em class="icon ni ni-arrow-left"></em
+              ></a>
+              <a
+                href="#"
+                class="nk-nav-compact nk-quick-nav-icon d-none d-xl-inline-flex"
+                data-target="sidebarMenu"
+                ><em class="icon ni ni-menu"></em
+              ></a>
+            </div>
+            <div class="nk-sidebar-brand">
+              <a href="html/hotel/index.html" class="logo-link nk-sidebar-logo">
+                <img
+                  class="logo-light logo-img"
+                  src="{% static 'images/erp.png' %}"
+                  alt="logo"
+                />
+                <img
+                  class="logo-dark logo-img"
+                  src="{% static 'images/erp.png' %}"
+                  alt="logo-dark"
+                />
+              </a>
+            </div>
+          </div>
+          <!-- .nk-sidebar-element -->
+          <div class="nk-sidebar-element nk-sidebar-body">
+            <div class="nk-sidebar-content">
+              <div class="nk-sidebar-menu" data-simplebar>
+                <ul class="nk-menu">
+                  <li class="nk-menu-item">
+                    <a href="{% url 'facturation-ref' ref=ref %}" class="nk-menu-link">
+                      <span class="nk-menu-icon"
+                        ><em class="icon ni ni-list-round"></em
+                      ></span>
+                      <span class="nk-menu-text">Facturation</span>
+                    </a>
+                  </li>
+                    {% if request.user.userhasrole.role.name != "Cashier" %}
+                    <li class="nk-menu-item">
+                    <a href="{% url 'sales-pv-fact' %}" class="nk-menu-link">
+                      <span class="nk-menu-icon"
+                        ><em class="icon ni ni-quote-left"></em
+                      ></span>
+
+                      <span class="nk-menu-text">Ventes</span>
+                    </a>
+                  </li>
+
+                    <li class="nk-menu-item">
+                    <a href="{% url 'recep-pv-fact' %}" class="nk-menu-link">
+                      <span class="nk-menu-icon"
+                        ><em class="icon ni ni-archived"></em
+                      ></span>
+                      <span class="nk-menu-text">Receptions</span>
+                    </a>
+                  </li>
+                    {% endif %}
+
+
+                    <li class="nk-menu-item">
+                    <a href="{% url 'logout' %}" class="nk-menu-link">
+                      <span class="nk-menu-icon"
+                        ><em class="icon ni ni-account-setting"></em
+                      ></span>
+                      <span class="nk-menu-text">Deconnexion</span>
+                    </a>
+                  </li>
+                </ul>
+                <!-- .nk-menu -->
+              </div>
+              <!-- .nk-sidebar-menu -->
+            </div>
+            <!-- .nk-sidebar-content -->
+          </div>
+          <!-- .nk-sidebar-element -->
+        </div>
