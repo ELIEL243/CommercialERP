@@ -28,7 +28,7 @@ def LoginView(request):
             elif user.groups.filter(name="Commercialisation"):
                 return redirect('home-comm')
             elif user.groups.filter(name="Facturation admin") and user.cashier is not None:
-                return redirect('home-facturation')
+                return redirect('sales-pv-fact')
             elif user.groups.filter(name="Facturation") and user.cashier is not None:
                 return redirect('home-facturation')
             elif user.groups.filter(name="Administration"):
