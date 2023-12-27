@@ -46,7 +46,6 @@
                       <span class="nk-menu-text">Facturation</span>
                     </a>
                   </li>
-                    {% if request.user.userhasrole.role.name != "Cashier" %}
                     <li class="nk-menu-item">
                     <a href="{% url 'sales-pv-fact' %}" class="nk-menu-link">
                       <span class="nk-menu-icon"
@@ -65,7 +64,6 @@
                       <span class="nk-menu-text">Receptions</span>
                     </a>
                   </li>
-                    {% endif %}
 
 
                     <li class="nk-menu-item">
