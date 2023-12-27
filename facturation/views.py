@@ -14,7 +14,7 @@ def generate_unique_uid():
 
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['Facturation'])
+@allowed_users(allowed_roles=['Facturation', 'Facturation admin'])
 def HomeFacturation(request):
     ref = generate_unique_uid()
 
@@ -22,7 +22,7 @@ def HomeFacturation(request):
 
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['Facturation'])
+@allowed_users(allowed_roles=['Facturation', 'Facturation admin'])
 def FacturationView(request, ref):
     products = Product.objects.all()
     if request.user.cashier:
@@ -46,7 +46,7 @@ def FacturationView(request, ref):
 
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['Facturation'])
+@allowed_users(allowed_roles=['Facturation', 'Facturation admin'])
 def LineEdit(request, pk):
     line = LineItem.objects.get(pk=pk)
     line.qts = int(line.qts)
@@ -60,7 +60,7 @@ def LineEdit(request, pk):
 
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['Facturation'])
+@allowed_users(allowed_roles=['Facturation', 'Facturation admin'])
 def DelLine(request, pk):
     line = LineItem.objects.get(pk=pk)
     order = line.order
@@ -70,7 +70,7 @@ def DelLine(request, pk):
 
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['Facturation'])
+@allowed_users(allowed_roles=['Facturation', 'Facturation admin'])
 def DetFact(request, ref):
     order = OrderFact.objects.get(ref=ref)
     order.completed = True
